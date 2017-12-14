@@ -17,16 +17,16 @@ app.listen(PORT, ()=> {
   console.log('Server listening on port ' +PORT);
 })
 
-//
+
 // // Database connection ---------------------
-// mongoose.connect(config.database, (err)=>{
-//   if (err){
-//     console.log(err)
-//   }else{
-//     console.log('Connected');
-//   };
-// });
-//
+mongoose.connect(config.database, (err)=>{
+  if (err){
+    console.log(err)
+  }else{
+    console.log('Connected');
+  };
+});
+
 // mongoose.connection.on('open', ()=>{
 //   console.log('Connected to database ' +config.database);
 // });
@@ -35,20 +35,12 @@ app.listen(PORT, ()=> {
 //   console.log('Database error:' +err);
 // });
 
-// 
+//
 // // Specify the route handler ------------------
 // app.use('/users', users);
 
 // Handle get request
 app.get('/', (req, res)=>{
-  // let user = {
-  //   name:"James",
-  //   age:28,
-  // };
-  //
-  // for (let key in user){
-  //   console.log(user[key]);
-  // }
 
   res.send('Hello World, GET!!!!');
 })
