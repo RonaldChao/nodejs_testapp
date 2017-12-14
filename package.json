@@ -1,0 +1,25 @@
+{
+  "name": "nodejs_testapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "engines":{
+    "node":"6.9.5",
+    "npm":"3:10:10"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "RonaldChao",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  }
+}
