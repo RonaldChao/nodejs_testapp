@@ -3,23 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "engines":{
-    "node":"6.9.5",
-    "npm":"3.10.10"
+  "engines": {
+    "node": "6.9.5",
+    "npm": "3.10.10"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "author": "RonaldChao",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2",
-    "mongoose": "*",
     "bcryptjs": "*",
-    "cors": "*",
-    "jsonwebtoken": "*",
     "body-parser": "*",
-    "passport": "*",
+    "cookie-session": "^2.0.0-beta.3",
+    "cors": "*",
+    "express": "^4.16.2",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
     "passport-jwt": "*"
   }
 }

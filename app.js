@@ -1,31 +1,50 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const config = require('./config/database');
-const bodyParser = require('body-parser');
+const configDatabase = require('./config/database');
+const keys = require('./config/keys')
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 
-const app = express();
-
-// Listen to port number
-const PORT = process.env.PORT || 3000;
-
-const users = require('./routers/users');
-
-// Middleware definition -------------------
-app.use(bodyParser.json());
-
-app.listen(PORT, ()=> {
-  console.log('Server listening on port ' +PORT);
-})
+require('./models/User');
+require('./services/passport');
 
 
 // // Database connection ---------------------
-mongoose.connect(config.database, (err)=>{
+mongoose.connect(configDatabase.database, (err)=>{
   if (err){
     console.log(err)
   }else{
     console.log('Connected');
   };
 });
+
+const app = express();
+
+app.use(
+  cookieSession({
+    // expire in ms
+    maxAge: 1000000,
+    keys: [keys.cookieKey]
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./routers/authRoutes')(app);
+
+// Listen to port number
+const PORT = process.env.PORT || 5000;
+
+const users = require('./routers/users');
+
+// Middleware definition -------------------
+
+app.listen(PORT, ()=> {
+  console.log('Server listening on port ' +PORT);
+})
+
+
 
 // mongoose.connection.on('open', ()=>{
 //   console.log('Connected to database ' +config.database);
@@ -36,8 +55,8 @@ mongoose.connect(config.database, (err)=>{
 // });
 
 //
-// // Specify the route handler ------------------
-// app.use('/users', users);
+// Specify the route handler ------------------
+app.use('/users', users);
 
 // Handle get request
 app.get('/', (req, res)=>{
