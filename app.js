@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const configDatabase = require('./config/database');
 const keys = require('./config/keys')
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -10,7 +9,7 @@ require('./services/passport');
 
 
 // // Database connection ---------------------
-mongoose.connect(configDatabase.database, (err)=>{
+mongoose.connect(keys.database, (err)=>{
   if (err){
     console.log(err)
   }else{
@@ -45,16 +44,6 @@ app.listen(PORT, ()=> {
 })
 
 
-
-// mongoose.connection.on('open', ()=>{
-//   console.log('Connected to database ' +config.database);
-// });
-//
-// mongoose.connection.on('error', (err)=>{
-//   console.log('Database error:' +err);
-// });
-
-//
 // Specify the route handler ------------------
 app.use('/users', users);
 
